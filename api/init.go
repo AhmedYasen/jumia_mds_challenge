@@ -1,6 +1,8 @@
 package server
 
 import (
+	"time"
+
 	"github.com/AhmedYasen/jumia_mds_challenge/model"
 	workerpool "github.com/AhmedYasen/jumia_mds_challenge/workerPool"
 	"github.com/gin-gonic/gin"
@@ -71,7 +73,7 @@ func bulkWorkerInit(workerPoolJobs uint64, requestQueueSize uint64) {
 			// processing failed
 			statusChannel <- workerpool.JobStatus{Id: id, Status: workerpool.FAILED}
 		} else {
-			log.Infof("Job Done")
+			log.Infof(" %v Job Done", time.Now().Format("2020/08/08 - 20:22:34"))
 			// processing done
 			statusChannel <- workerpool.JobStatus{Id: id, Status: workerpool.DONE}
 		}
